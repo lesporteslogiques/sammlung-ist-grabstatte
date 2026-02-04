@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://vgpx0w8dyy5p"]
+
+[ext_resource type="PackedScene" uid="uid://fw63t6prgql3" path="res://assets/statues/fullbody.glb" id="1_bxb1y"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1blle"]
+size = Vector3(1.079895, 1.7873535, 1)
+
+[node name="Chevalier" type="StaticBody3D" unique_id=541927798]
+
+[node name="fullbody" parent="." unique_id=457266670 instance=ExtResource("1_bxb1y")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=429481949]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.019744873, 0.9244385, 0)
+shape = SubResource("BoxShape3D_1blle")

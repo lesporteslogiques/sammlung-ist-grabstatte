@@ -1,0 +1,63 @@
+[gd_scene format=3 uid="uid://duonpkmws3hsq"]
+
+[ext_resource type="Script" uid="uid://cfni2sbacvaww" path="res://scenes/hero.gd" id="1_p1r5x"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_2c62f"]
+
+[sub_resource type="Animation" id="Animation_780bu"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera3D/SpotLight3D:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_p1r5x"]
+resource_name = "torchlight_bobbing"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera3D/SpotLight3D:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5, 0.75, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.2, 0.0, 0.2, 0.4, 0.2]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_u1ipw"]
+_data = {
+&"RESET": SubResource("Animation_780bu"),
+&"torchlight_bobbing": SubResource("Animation_p1r5x")
+}
+
+[node name="Hero" type="CharacterBody3D" unique_id=1095653713]
+script = ExtResource("1_p1r5x")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1904181021]
+shape = SubResource("CapsuleShape3D_2c62f")
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=1208269946]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7, 0)
+
+[node name="SpotLight3D" type="SpotLight3D" parent="Camera3D" unique_id=1265848896]
+transform = Transform3D(0.9994363, 0, 0.03357383, 0, 1, 0, -0.03357383, 0, 0.9994363, 0, -0.357, 0)
+light_energy = 5.0
+shadow_enabled = true
+shadow_opacity = 0.9
+spot_range = 32.224335
+spot_attenuation = 2.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=977695513]
+libraries/ = SubResource("AnimationLibrary_u1ipw")
+speed_scale = 1.5

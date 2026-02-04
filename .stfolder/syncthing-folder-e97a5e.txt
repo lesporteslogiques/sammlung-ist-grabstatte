@@ -1,0 +1,5 @@
+# This directory is a Syncthing folder marker.
+# Do not delete.
+
+folderID: vryof-unwdt
+created: 2026-01-31T16:48:36+01:00

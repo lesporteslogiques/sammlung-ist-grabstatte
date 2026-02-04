@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://bf02mp1ckk5og"]
+
+[ext_resource type="PackedScene" uid="uid://b2rg1jk75s3h5" path="res://assets/statues/child_w_goose.glb" id="1_5867r"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_5jdgb"]
+size = Vector3(1, 2, 1.4)
+
+[node name="StatueEnfantOie" type="StaticBody3D" unique_id=1306401186]
+
+[node name="child_w_goose" parent="." unique_id=1766722381 instance=ExtResource("1_5867r")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1435263266]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("BoxShape3D_5jdgb")

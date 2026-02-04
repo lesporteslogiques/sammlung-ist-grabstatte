@@ -1,0 +1,10 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://dc3jvbt4auwn2"]
+
+[ext_resource type="Shader" uid="uid://bcpghc2lyxeco" path="res://shader/bluenoise.gdshader" id="1_bmxs5"]
+[ext_resource type="CompressedTexture2DArray" uid="uid://b3uyfsp4in821" path="res://shader/materials/blue_noise/tiled_L_64.png" id="1_yvu1m"]
+
+[resource]
+shader = ExtResource("1_bmxs5")
+shader_parameter/blue_noise_textures = ExtResource("1_yvu1m")
+shader_parameter/light_color = Color(0.8096244, 0.7563505, 0.7141166, 1)
+shader_parameter/dark_color = Color(0.11349433, 0.10947471, 0.07109579, 1)

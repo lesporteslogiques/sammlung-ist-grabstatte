@@ -1,0 +1,76 @@
+[gd_scene format=3 uid="uid://c0mcjjbfvy02m"]
+
+[ext_resource type="Script" uid="uid://oevmxlkk1yrc" path="res://scenes/gardien.gd" id="1_eetqb"]
+[ext_resource type="PackedScene" uid="uid://bkh3k73waqkla" path="res://assets/gardiens/gardien_asset.tscn" id="2_6jqmr"]
+[ext_resource type="AudioStream" uid="uid://wc0dbewr7ptv" path="res://assets/sons/gardien_alerte_2.wav" id="3_6jqmr"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_tv0gw"]
+radius = 0.7
+
+[node name="Gardien" type="AnimatableBody3D" unique_id=1004448656]
+script = ExtResource("1_eetqb")
+
+[node name="mesh" parent="." unique_id=1589885491 instance=ExtResource("2_6jqmr")]
+transform = Transform3D(-2, -1.8032578e-08, -2.9884822e-07, 9.05913e-09, 1.9918098, -0.18081324, 2.9925474e-07, -0.18081324, -1.9918098, 0, -0.36506355, -0.03510642)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1007898634]
+visible = false
+shape = SubResource("CapsuleShape3D_tv0gw")
+
+[node name="Area3D" type="Area3D" parent="." unique_id=235028844]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=1019421250]
+shape = SubResource("CapsuleShape3D_tv0gw")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="." unique_id=1340603340]
+transform = Transform3D(1, 0, 0, 0, 0.9845032, 0.17536673, 0, -0.17536673, 0.9845032, 0, -0.23199892, -0.68970335)
+light_energy = 5.0
+shadow_enabled = true
+spot_range = 20.0
+spot_attenuation = 2.0
+spot_angle = 20.0
+
+[node name="Rays" type="Node3D" parent="." unique_id=1335921317]
+
+[node name="Left" type="RayCast3D" parent="Rays" unique_id=683993000]
+transform = Transform3D(0.9659258, 0, 0.25881904, 0, 1, 0, -0.25881904, 0, 0.9659258, 0, 0, 0)
+target_position = Vector3(0, 0, -15)
+debug_shape_custom_color = Color(0, 1, 0, 1)
+debug_shape_thickness = 3
+
+[node name="CenterLeft" type="RayCast3D" parent="Rays" unique_id=2073806748]
+transform = Transform3D(0.9914449, 0, 0.1305262, 0, 1, 0, -0.1305262, 0, 0.9914449, 0, 0, 0)
+target_position = Vector3(0, 0, -15)
+debug_shape_custom_color = Color(0, 1, 0, 1)
+debug_shape_thickness = 3
+
+[node name="Center" type="RayCast3D" parent="Rays" unique_id=1004951659]
+target_position = Vector3(0, 0, -15)
+debug_shape_custom_color = Color(0, 1, 0, 1)
+debug_shape_thickness = 3
+
+[node name="CenterRight" type="RayCast3D" parent="Rays" unique_id=1999829959]
+transform = Transform3D(0.9914448, 0, -0.13052619, 0, 1, 0, 0.13052619, 0, 0.9914448, 0, 0, 0)
+target_position = Vector3(0, 0, -15)
+debug_shape_custom_color = Color(0, 1, 0, 1)
+debug_shape_thickness = 3
+
+[node name="Right" type="RayCast3D" parent="Rays" unique_id=1797464328]
+transform = Transform3D(0.9659258, 0, -0.25881904, 0, 1, 0, 0.25881904, 0, 0.9659258, 0, 0, 0)
+target_position = Vector3(0, 0, -15)
+debug_shape_custom_color = Color(0, 1, 0, 1)
+debug_shape_thickness = 3
+
+[node name="ChasingTimer" type="Timer" parent="." unique_id=1293119296]
+one_shot = true
+
+[node name="AudioAlert" type="AudioStreamPlayer3D" parent="." unique_id=1410310281]
+stream = ExtResource("3_6jqmr")
+
+[node name="AudioVoice" type="AudioStreamPlayer3D" parent="." unique_id=353136560]
+
+[node name="Camera" type="Camera3D" parent="." unique_id=1193419687]
+transform = Transform3D(1, 0, 0, 0, 0.98331845, 0.18189229, 0, -0.18189229, 0.98331845, 0, 1.4299875, -0.6510922)
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
+[connection signal="timeout" from="ChasingTimer" to="." method="_on_chasing_timer_timeout"]

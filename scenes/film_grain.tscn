@@ -1,0 +1,50 @@
+[gd_scene format=3 uid="uid://cjikilhv1i254"]
+
+[ext_resource type="Script" uid="uid://0v3ivaj18enj" path="res://scenes/texture_rect.gd" id="1_2gyya"]
+[ext_resource type="Shader" uid="uid://51e2mugi6f3y" path="res://scenes/dither_simple.gdshader" id="2_ytfpo"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_e0gdl"]
+frequency = 0.3
+metadata/_preview_in_3d_space_ = true
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_2gyya"]
+width = 1920
+height = 1080
+noise = SubResource("FastNoiseLite_e0gdl")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_uru85"]
+shader = ExtResource("2_ytfpo")
+shader_parameter/step_posterize = 50
+shader_parameter/step_pixelated = 1000
+shader_parameter/color_A = Color(0.74978, 0.74978, 0.74977994, 1)
+shader_parameter/color_B = Color(0.42632774, 0.37698725, 0.3190894, 1)
+shader_parameter/dithering_bayer = false
+shader_parameter/animated_dithering = true
+shader_parameter/smooth_animate = false
+shader_parameter/interval = 1.0000000149012
+
+[node name="Post_effect" type="Control" unique_id=2036027335]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Grain" type="TextureRect" parent="." unique_id=1005519268]
+self_modulate = Color(1, 1, 1, 0.07450981)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = SubResource("NoiseTexture2D_2gyya")
+script = ExtResource("1_2gyya")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1218003043]
+visible = false
+material = SubResource("ShaderMaterial_uru85")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2

@@ -1,0 +1,61 @@
+[gd_scene format=3 uid="uid://dbsy7swcjmni8"]
+
+[ext_resource type="PackedScene" path="res://scenes/statues/statue_assise.tscn" id="1_68f4v"]
+[ext_resource type="PackedScene" uid="uid://dounmppxoxi6y" path="res://scenes/statues/Statue1.tscn" id="2_ahuqb"]
+[ext_resource type="PackedScene" uid="uid://voikhjsfwpkr" path="res://scenes/statues/statue_acteon.tscn" id="3_hhq4o"]
+[ext_resource type="PackedScene" path="res://scenes/statues/statue_bressant.tscn" id="4_sajgl"]
+[ext_resource type="PackedScene" path="res://scenes/statues/statue_enfant_oie.tscn" id="5_t71cj"]
+[ext_resource type="PackedScene" path="res://scenes/statues/statue_ours.tscn" id="6_6u81r"]
+[ext_resource type="PackedScene" path="res://scenes/statues/statue_rhino.tscn" id="7_5vdml"]
+[ext_resource type="PackedScene" uid="uid://c1fr872sfnu5w" path="res://scenes/statues/dragon.tscn" id="8_3o27l"]
+[ext_resource type="PackedScene" uid="uid://vgpx0w8dyy5p" path="res://scenes/statues/chevalier.tscn" id="10_6u81r"]
+[ext_resource type="PackedScene" uid="uid://dj8w2x7uxthw8" path="res://scenes/statues/leopard.tscn" id="11_5vdml"]
+[ext_resource type="PackedScene" uid="uid://c5d78837ngvvr" path="res://assets/statues/roasting.glb" id="12_3o27l"]
+[ext_resource type="PackedScene" uid="uid://c8y2mwqxymr2u" path="res://scenes/debut.tscn" id="13_6u81r"]
+
+[node name="statues" type="Node3D" unique_id=18525707]
+
+[node name="StatueAssise" parent="." unique_id=519279882 instance=ExtResource("1_68f4v")]
+transform = Transform3D(1.7320508, 0, 1, 0, 2, 0, -1, 0, 1.7320508, -11, 0, -21)
+
+[node name="Statue1" parent="." unique_id=364438970 instance=ExtResource("2_ahuqb")]
+transform = Transform3D(-0.6980405, 0, 0.71605825, 0, 1, 0, -0.71605825, 0, -0.6980405, -18.512295, -0.00037384033, 13.863469)
+
+[node name="Statue1" parent="Statue1" unique_id=879900635 instance=ExtResource("2_ahuqb")]
+transform = Transform3D(2.353004, 0, -1.5176861, 0, 2.8, 0, 1.5176861, 0, 2.353004, 34.998722, -0.00037384033, 53.10254)
+
+[node name="StatueActeon" parent="." unique_id=1529168692 instance=ExtResource("3_hhq4o")]
+transform = Transform3D(-0.33867323, 0, 2.9808223, 0, 3.0000005, 0, -2.9808223, 0, -0.33867323, -35.00818, 1.9073486e-06, 32.788258)
+
+[node name="StatueBressant" parent="." unique_id=510823358 instance=ExtResource("4_sajgl")]
+transform = Transform3D(2.557373, 0, -1.5683885, 0, 3, 0, 1.5683885, 0, 2.557373, 12.116112, 0, -21.020847)
+
+[node name="StatueEnfantOie" parent="." unique_id=1306401186 instance=ExtResource("5_t71cj")]
+transform = Transform3D(-2.63418, 0, 3.0101655, 0, 4, 0, -3.0101655, 0, -2.63418, 14.769552, 1.9073486e-06, 18.0131)
+
+[node name="StatueEnfantOie2" parent="." unique_id=1480333128 instance=ExtResource("5_t71cj")]
+transform = Transform3D(0.48890075, 0, 0.10476666, 0, 0.5, 0, -0.10476666, 0, 0.48890075, -42.023685, 1.9073486e-06, -28.26767)
+
+[node name="StatueOurs" parent="." unique_id=1487503622 instance=ExtResource("6_6u81r")]
+transform = Transform3D(-0.21238887, 0, -1.9886906, 0, 2, 0, 1.9886906, 0, -0.21238887, -12.55388, 3.8146973e-06, -31.28265)
+
+[node name="StatueRhino" parent="." unique_id=1825872971 instance=ExtResource("7_5vdml")]
+transform = Transform3D(1.7414074, 0, 5.7417336, 0, 6, 0, -5.7417336, 0, 1.7414074, 27.684269, 0, -0.5141411)
+
+[node name="Dragon" parent="." unique_id=358957962 instance=ExtResource("8_3o27l")]
+transform = Transform3D(4.8202744, 0, 3.5728078, 0, 6, 0, -3.5728078, 0, 4.8202744, 39.847733, 0, 23.245268)
+
+[node name="Chevalier" parent="." unique_id=541927798 instance=ExtResource("10_6u81r")]
+transform = Transform3D(3.5049577, 0, -1.9275041, 0, 4, 0, 1.9275041, 0, 3.5049577, -13.579988, 4.7683716e-07, 30.215351)
+
+[node name="Chevalier2" parent="." unique_id=134867216 instance=ExtResource("10_6u81r")]
+transform = Transform3D(-1.6314275, 0, 1.1569115, 0, 2, 0, -1.1569115, 0, -1.6314275, 20.765844, 4.7683716e-07, -26.86078)
+
+[node name="Leopard" parent="." unique_id=1496618980 instance=ExtResource("11_5vdml")]
+transform = Transform3D(1.8565695, 0, 0.7437403, 0, 2, 0, -0.7437403, 0, 1.8565695, -21.275738, -9.536743e-07, -1.0827637)
+
+[node name="roasting" parent="." unique_id=65825819 instance=ExtResource("12_3o27l")]
+transform = Transform3D(-1.9392583, 0, -0.4891594, 0, 2, 0, 0.4891594, 0, -1.9392583, 40.024254, 0, -26.894001)
+
+[node name="debut" parent="." unique_id=1514941773 instance=ExtResource("13_6u81r")]
+transform = Transform3D(-3, 0, 2.6226832e-07, 0, 3, 0, -2.6226832e-07, 0, -3, 0, 0, 0)

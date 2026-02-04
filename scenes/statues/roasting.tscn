@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://euw61wn64qbd"]
+
+[ext_resource type="PackedScene" uid="uid://c5d78837ngvvr" path="res://assets/statues/roasting.glb" id="1_reyg0"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_yt66b"]
+size = Vector3(1.5966797, 1.7207642, 1.321991)
+
+[node name="Roasting" type="StaticBody3D" unique_id=1750405001]
+
+[node name="roasting" parent="." unique_id=65825819 instance=ExtResource("1_reyg0")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=2016693035]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.03564453, 0.8604431, -0.14646912)
+shape = SubResource("BoxShape3D_yt66b")

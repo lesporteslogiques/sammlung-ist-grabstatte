@@ -1,0 +1,76 @@
+[gd_scene format=3 uid="uid://2n6belmu3537"]
+
+[ext_resource type="PackedScene" uid="uid://blluxf5avmd5r" path="res://scenes/masques/masque.tscn" id="1_4r746"]
+[ext_resource type="Texture2D" uid="uid://cvm16bkibykqc" path="res://assets/masques/masques_0007.png" id="2_nwtib"]
+[ext_resource type="Texture2D" uid="uid://c4bjy81vvx3qf" path="res://assets/masques/esprit voleur de masque.png" id="2_yv0hv"]
+[ext_resource type="Texture2D" uid="uid://cigtyov3ejwts" path="res://assets/masques/masque 2.png" id="3_eb3ym"]
+[ext_resource type="Texture2D" uid="uid://bdvqnig7liv71" path="res://assets/masques/masques_0002.png" id="3_ply10"]
+[ext_resource type="AudioStream" uid="uid://fnntfdyr3ou1" path="res://assets/sons/boucle museum 03.wav" id="3_yv0hv"]
+[ext_resource type="Texture2D" uid="uid://4cgu6kdnatsb" path="res://assets/masques/masque 3.png" id="4_ht7m5"]
+[ext_resource type="Texture2D" uid="uid://kd0v6ifbs57" path="res://assets/masques/masques_0008.png" id="4_q8rkb"]
+[ext_resource type="AudioStream" uid="uid://bhubbo22ivd1e" path="res://assets/sons/boucle museum 04.wav" id="5_5506e"]
+[ext_resource type="Texture2D" uid="uid://d16hq60w5xlb0" path="res://assets/masques/masque insmouth.png" id="6_5506e"]
+[ext_resource type="AudioStream" uid="uid://ctc22eurwlbfn" path="res://assets/sons/musique_1.wav" id="7_j22af"]
+[ext_resource type="Texture2D" uid="uid://c8jk1cotla8or" path="res://assets/masques/masques_0003.png" id="8_j22af"]
+[ext_resource type="Texture2D" uid="uid://c3e0iogx8d788" path="res://assets/masques/masques_0004.png" id="9_3ytcg"]
+[ext_resource type="AudioStream" uid="uid://dj60hqiuwjb0o" path="res://assets/sons/musique_2.wav" id="9_l08r8"]
+[ext_resource type="Texture2D" uid="uid://dmm0uvl35gnpi" path="res://assets/masques/masques_0005.png" id="10_l08r8"]
+[ext_resource type="Texture2D" uid="uid://brog8quvdgfxu" path="res://assets/masques/masques_0006.png" id="11_udc0b"]
+[ext_resource type="AudioStream" uid="uid://bg8wg3oiymwfq" path="res://assets/sons/Iguanodons sample loop.mp3" id="12_j22af"]
+[ext_resource type="AudioStream" uid="uid://d2ct1wca1vcdp" path="res://assets/sons/07.mp3" id="14_3ytcg"]
+[ext_resource type="AudioStream" uid="uid://bb4jm7iot0vuy" path="res://assets/sons/08.mp3" id="16_l08r8"]
+[ext_resource type="AudioStream" uid="uid://joyei155ubmt" path="res://assets/sons/Win screen.wav" id="18_udc0b"]
+
+[node name="masques" type="Node3D" unique_id=1219746355]
+
+[node name="Masque1" parent="." unique_id=1015549790 instance=ExtResource("1_4r746")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.456669, 2, 23.52474)
+sprite = ExtResource("2_yv0hv")
+sound = ExtResource("3_yv0hv")
+
+[node name="Masque2" parent="." unique_id=1466690342 instance=ExtResource("1_4r746")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 39.355225, 2, 24.807951)
+sprite = ExtResource("3_eb3ym")
+sound = ExtResource("5_5506e")
+
+[node name="Masque3" parent="." unique_id=550191456 instance=ExtResource("1_4r746")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.603, 2, -39.535)
+sprite = ExtResource("4_ht7m5")
+sound = ExtResource("7_j22af")
+
+[node name="Masque4" parent="." unique_id=1577135168 instance=ExtResource("1_4r746")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.163, 2, 41.492)
+sprite = ExtResource("6_5506e")
+sound = ExtResource("9_l08r8")
+
+[node name="Masque5" parent="." unique_id=263923138 instance=ExtResource("1_4r746")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -44.824, 2, -19.163)
+sprite = ExtResource("3_ply10")
+
+[node name="Masque6" parent="." unique_id=41807539 instance=ExtResource("1_4r746")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.999, 2, 45.991)
+sprite = ExtResource("8_j22af")
+sound = ExtResource("12_j22af")
+
+[node name="Masque7" parent="." unique_id=1588157564 instance=ExtResource("1_4r746")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -26.995, 2, 18.33)
+sprite = ExtResource("9_3ytcg")
+sound = ExtResource("14_3ytcg")
+
+[node name="Masque8" parent="." unique_id=1415766257 instance=ExtResource("1_4r746")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.496, 2, -45.324)
+sprite = ExtResource("10_l08r8")
+sound = ExtResource("16_l08r8")
+
+[node name="Masque9" parent="." unique_id=1744114108 instance=ExtResource("1_4r746")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26.328, 2, -19.163)
+sprite = ExtResource("11_udc0b")
+sound = ExtResource("18_udc0b")
+
+[node name="Masque10" parent="." unique_id=352101583 instance=ExtResource("1_4r746")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.165, 2, -26.495)
+sprite = ExtResource("2_nwtib")
+
+[node name="Masque11" parent="." unique_id=608366545 instance=ExtResource("1_4r746")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.797, 2, 41.788)
+sprite = ExtResource("4_q8rkb")

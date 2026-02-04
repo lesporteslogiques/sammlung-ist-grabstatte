@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://dj8w2x7uxthw8"]
+
+[ext_resource type="PackedScene" uid="uid://c0e6i02x2hs0w" path="res://assets/statues/georges_gardet.glb" id="1_guete"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_76apj"]
+size = Vector3(2.5460205, 1.5810547, 1.8060913)
+
+[node name="Leopard" type="StaticBody3D" unique_id=1496618980]
+
+[node name="georges_gardet" parent="." unique_id=930203314 instance=ExtResource("1_guete")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=379411946]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.026428223, 0.79052734, 0.10757446)
+shape = SubResource("BoxShape3D_76apj")

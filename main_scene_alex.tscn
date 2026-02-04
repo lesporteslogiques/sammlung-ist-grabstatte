@@ -1,0 +1,234 @@
+[gd_scene format=3 uid="uid://dcn2orft3dqvn"]
+
+[ext_resource type="Script" uid="uid://dxnkwweik85w1" path="res://main_scene_alex.gd" id="1_o57td"]
+[ext_resource type="PackedScene" uid="uid://dgw8e5r6tdw3s" path="res://scenes/murs_musee.tscn" id="3_tjxu3"]
+[ext_resource type="PackedScene" uid="uid://cjikilhv1i254" path="res://scenes/film_grain.tscn" id="4_q7lst"]
+[ext_resource type="AudioStream" uid="uid://bbpkx8rdcuotc" path="res://assets/sons/ambiance_musee.wav" id="6_du85c"]
+[ext_resource type="Material" uid="uid://bbelptr7hfods" path="res://shader/materials/bayer_level2_8x8.tres" id="6_oprkd"]
+[ext_resource type="PackedScene" path="res://scenes/statues/statue_rhino.tscn" id="6_tjxu3"]
+[ext_resource type="Texture2D" uid="uid://bcnyg66oebvkr" path="res://assets/ui/titlescreen.png" id="7_glaad"]
+[ext_resource type="PackedScene" uid="uid://fw63t6prgql3" path="res://assets/statues/fullbody.glb" id="7_o57td"]
+[ext_resource type="PackedScene" uid="uid://pe58kgpg1fk8" path="res://scenes/game_over_screen.tscn" id="8_tjxu3"]
+
+[sub_resource type="GDScript" id="GDScript_o57td"]
+script/source = "extends CharacterBody3D
+
+
+const SPEED = 5.0
+const JUMP_VELOCITY = 4.5
+const MOUSE_SENSITIVIY = 0.002
+
+var inertia = Vector2()
+
+func _physics_process(delta: float) -> void:
+	# Add the gravity.
+	if not is_on_floor():
+		velocity += get_gravity() * delta		
+	
+	# Handle jump.
+	if Input.is_action_just_pressed(\"ui_accept\") and is_on_floor():
+		velocity.y = JUMP_VELOCITY
+	
+	# Get the input direction and handle the movement/deceleration.
+	# As good practice, you should replace UI actions with custom gameplay actions.
+	var input_dir := Input.get_vector(\"left\", \"right\", \"front\", \"back\")
+	var direction := (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+	if direction:
+		velocity.x = direction.x * SPEED
+		velocity.z = direction.z * SPEED
+		inertia = Vector2(velocity.x, velocity.z)
+		if not $AnimationPlayer.is_playing():
+			$AnimationPlayer.play(\"torchlight_bobbing\")
+	else:
+		velocity.x = move_toward(velocity.x, 0, SPEED)
+		velocity.z = move_toward(velocity.z, 0, SPEED)
+		
+		if is_on_floor():
+			inertia *= 0.9
+			velocity.x += inertia.x
+			velocity.z += inertia.y
+		
+		if $AnimationPlayer.is_playing():
+			$AnimationPlayer.pause()
+
+	move_and_slide()
+
+
+func _input(event):
+	if event is InputEventMouseMotion and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
+		rotate_y(-event.relative.x * MOUSE_SENSITIVIY)
+		$Camera3D.rotate_x(-event.relative.y * MOUSE_SENSITIVIY)
+		$Camera3D.rotation.x = clampf($Camera3D.rotation.x, -deg_to_rad(70), deg_to_rad(70))
+"
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_2c62f"]
+
+[sub_resource type="Animation" id="Animation_780bu"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera3D/SpotLight3D:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_p1r5x"]
+resource_name = "torchlight_bobbing"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera3D/SpotLight3D:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5, 0.75, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.2, 0.0, 0.2, 0.4, 0.2]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_u1ipw"]
+_data = {
+&"RESET": SubResource("Animation_780bu"),
+&"torchlight_bobbing": SubResource("Animation_p1r5x")
+}
+
+[sub_resource type="Environment" id="Environment_0f027"]
+ambient_light_source = 1
+ambient_light_color = Color(1, 1, 1, 1)
+fog_light_color = Color(0.0029482269, 0.0035745231, 0.004691939, 1)
+volumetric_fog_density = 0.02
+volumetric_fog_temporal_reprojection_enabled = false
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0f027"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_2c62f"]
+material = SubResource("StandardMaterial3D_0f027")
+size = Vector2(105, 105)
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_gyfs4"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_d5x1h"]
+size = Vector3(105, 0.5, 105)
+
+[sub_resource type="BoxMesh" id="BoxMesh_gyfs4"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_hq1ik"]
+viewport_path = NodePath("SubViewportContainer2/SubViewport_main_scene")
+
+[node name="Node3D" type="Node3D" unique_id=235951408]
+script = ExtResource("1_o57td")
+
+[node name="SubViewportContainer2" type="SubViewportContainer" parent="." unique_id=558403987]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch = true
+mouse_target = true
+
+[node name="SubViewport_main_scene" type="SubViewport" parent="SubViewportContainer2" unique_id=1285488445]
+handle_input_locally = false
+size = Vector2i(1920, 1080)
+render_target_update_mode = 4
+
+[node name="Hero" type="CharacterBody3D" parent="SubViewportContainer2/SubViewport_main_scene" unique_id=1095653713]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0125787, 0)
+script = SubResource("GDScript_o57td")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer2/SubViewport_main_scene/Hero" unique_id=1904181021]
+shape = SubResource("CapsuleShape3D_2c62f")
+
+[node name="Camera3D" type="Camera3D" parent="SubViewportContainer2/SubViewport_main_scene/Hero" unique_id=1208269946]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7, 0)
+
+[node name="SpotLight3D" type="SpotLight3D" parent="SubViewportContainer2/SubViewport_main_scene/Hero/Camera3D" unique_id=1265848896]
+transform = Transform3D(0.99986607, 0, -0.016370453, 0, 1, 0, 0.016370453, 0, 0.99986607, 0, -0.48485684, 0.005031824)
+light_energy = 5.0
+shadow_enabled = true
+shadow_opacity = 0.9
+distance_fade_begin = 0.0
+distance_fade_length = 5.0
+spot_range = 47.823944
+spot_attenuation = 2.0
+spot_angle = 65.61636
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="SubViewportContainer2/SubViewport_main_scene/Hero" unique_id=977695513]
+libraries/ = SubResource("AnimationLibrary_u1ipw")
+speed_scale = 1.5
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="SubViewportContainer2/SubViewport_main_scene" unique_id=1035082531]
+environment = SubResource("Environment_0f027")
+
+[node name="Sol" type="MeshInstance3D" parent="SubViewportContainer2/SubViewport_main_scene" unique_id=1807146076]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.7281189)
+mesh = SubResource("PlaneMesh_2c62f")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="SubViewportContainer2/SubViewport_main_scene/Sol" unique_id=105783567]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, 0)
+physics_material_override = SubResource("PhysicsMaterial_gyfs4")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer2/SubViewport_main_scene/Sol/StaticBody3D" unique_id=176893440]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.00036892295, 0)
+shape = SubResource("BoxShape3D_d5x1h")
+
+[node name="Plafond" type="MeshInstance3D" parent="SubViewportContainer2/SubViewport_main_scene" unique_id=590006969]
+transform = Transform3D(2.0241723, 0, 0, 0, -1.0112635, 0.026792906, 0, -0.015586107, -1.738387, 0, 55.35109, 0)
+mesh = SubResource("PlaneMesh_2c62f")
+
+[node name="TestCube" type="MeshInstance3D" parent="SubViewportContainer2/SubViewport_main_scene" unique_id=1441223466]
+transform = Transform3D(0.90081954, 0.0005737914, -0.43419334, -0.0005737914, 0.9999998, 0.00013106788, 0.43419334, 0.00013106788, 0.9008197, 7.382329, 0.5033071, -10.721928)
+mesh = SubResource("BoxMesh_gyfs4")
+
+[node name="murs_musee" parent="SubViewportContainer2/SubViewport_main_scene" unique_id=210877261 instance=ExtResource("3_tjxu3")]
+
+[node name="Film_grain" parent="SubViewportContainer2/SubViewport_main_scene" unique_id=2036027335 instance=ExtResource("4_q7lst")]
+
+[node name="gardiens" type="Node" parent="SubViewportContainer2/SubViewport_main_scene" unique_id=507398099]
+
+[node name="audio" type="Node" parent="SubViewportContainer2/SubViewport_main_scene" unique_id=579394576]
+
+[node name="ambiance_musee" type="AudioStreamPlayer" parent="SubViewportContainer2/SubViewport_main_scene/audio" unique_id=1101721010]
+stream = ExtResource("6_du85c")
+volume_db = -25.0
+autoplay = true
+
+[node name="fullbody" parent="SubViewportContainer2/SubViewport_main_scene" unique_id=457266670 instance=ExtResource("7_o57td")]
+transform = Transform3D(0.34300396, 0, 0.939334, 0, 1, 0, -0.939334, 0, 0.34300396, -3.103146, 0, 0)
+
+[node name="StatueRhino" parent="SubViewportContainer2/SubViewport_main_scene" unique_id=1825872971 instance=ExtResource("6_tjxu3")]
+transform = Transform3D(-4.841088, 0, -1.2505481, 0, 5, 0, 1.2505481, 0, -4.841088, 0, 0, -7.625515)
+
+[node name="Sprite2D" type="Sprite2D" parent="SubViewportContainer2/SubViewport_main_scene" unique_id=1926749442]
+texture = ExtResource("7_glaad")
+centered = false
+
+[node name="GameOverScreen" parent="SubViewportContainer2/SubViewport_main_scene" unique_id=844084928 instance=ExtResource("8_tjxu3")]
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="." unique_id=2058716805]
+offset_right = 1920.0
+offset_bottom = 1080.0
+mouse_filter = 2
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer" unique_id=1524892190]
+handle_input_locally = false
+size = Vector2i(1920, 1080)
+render_target_update_mode = 4
+
+[node name="TextureRect" type="TextureRect" parent="SubViewportContainer/SubViewport" unique_id=1515183149]
+material = ExtResource("6_oprkd")
+offset_right = 640.0
+offset_bottom = 360.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 2
+texture = SubResource("ViewportTexture_hq1ik")

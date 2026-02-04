@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://bcl107q571qjy"]
+
+[ext_resource type="Texture2D" uid="uid://cjx11wk7vj5go" path="res://assets/ui/masque compteur.png" id="1_6ue82"]
+[ext_resource type="LabelSettings" uid="uid://brpqbnpckm6nj" path="res://gothic_label_settings.tres" id="2_yqkso"]
+
+[node name="MaskCounter" type="Node2D" unique_id=1938424269]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=321224330]
+position = Vector2(1850, 69)
+texture = ExtResource("1_6ue82")
+
+[node name="Label" type="Label" parent="." unique_id=965295769]
+offset_left = 1707.0
+offset_top = 43.0
+offset_right = 1779.0
+offset_bottom = 107.0
+text = "99"
+label_settings = ExtResource("2_yqkso")

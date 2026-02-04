@@ -1,0 +1,97 @@
+[gd_scene format=3 uid="uid://blluxf5avmd5r"]
+
+[ext_resource type="Script" uid="uid://ld4qo4l3631u" path="res://scenes/masques/masque.gd" id="1_eq0b7"]
+[ext_resource type="AudioStream" uid="uid://cefn1ek6wv84e" path="res://assets/sons/esprit_libre.wav" id="3_mwhij"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_4rjvl"]
+
+[sub_resource type="Animation" id="Animation_eq0b7"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite3D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite3D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_mwhij"]
+resource_name = "free"
+length = 4.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite3D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite3D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 2, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4rjvl"]
+_data = {
+&"RESET": SubResource("Animation_eq0b7"),
+&"free": SubResource("Animation_mwhij")
+}
+
+[node name="Masque1" type="Node3D" unique_id=1015549790]
+script = ExtResource("1_eq0b7")
+
+[node name="Sprite3D" type="Sprite3D" parent="." unique_id=133937061]
+billboard = 2
+shaded = true
+double_sided = false
+texture_filter = 0
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." unique_id=141346209]
+stream = ExtResource("3_mwhij")
+volume_db = -30.0
+bus = &"Reverb"
+
+[node name="AudioAmb" type="AudioStreamPlayer3D" parent="." unique_id=540486003]
+volume_db = -25.0
+autoplay = true
+max_distance = 20.0
+
+[node name="Area3D" type="Area3D" parent="." unique_id=2135575741]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=1366701185]
+shape = SubResource("SphereShape3D_4rjvl")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1553786840]
+libraries/ = SubResource("AnimationLibrary_4rjvl")
+
+[connection signal="finished" from="AudioStreamPlayer3D" to="." method="_on_audio_stream_player_3d_finished"]
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]

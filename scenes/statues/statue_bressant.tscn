@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://b7xl12dklvbqg"]
+
+[ext_resource type="PackedScene" uid="uid://ctw5tjxy0bfjr" path="res://assets/statues/bressant.glb" id="1_sbo3x"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_ahr6a"]
+
+[node name="StatueBressant" type="StaticBody3D" unique_id=510823358]
+
+[node name="bressant" parent="." unique_id=1903651462 instance=ExtResource("1_sbo3x")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1522562146]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CylinderShape3D_ahr6a")

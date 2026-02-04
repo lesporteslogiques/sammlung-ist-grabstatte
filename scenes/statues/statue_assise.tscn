@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://c2qy4r8ca181x"]
+
+[ext_resource type="PackedScene" uid="uid://bqxq1ph2pkn2v" path="res://assets/statues/child.glb" id="1_ch2py"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_4nogl"]
+size = Vector3(1, 2, 1.8)
+
+[node name="StatueAssise" type="StaticBody3D" unique_id=519279882]
+
+[node name="child" parent="." unique_id=710085415 instance=ExtResource("1_ch2py")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1055293481]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0.07833934)
+shape = SubResource("BoxShape3D_4nogl")

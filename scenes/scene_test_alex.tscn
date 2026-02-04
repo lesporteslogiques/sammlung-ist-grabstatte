@@ -1,0 +1,54 @@
+[gd_scene format=3 uid="uid://cuqqjugo2hxel"]
+
+[ext_resource type="Material" uid="uid://dc3jvbt4auwn2" path="res://shader/materials/blue_noise/simplified_blue_noise.tres" id="1_sykyp"]
+[ext_resource type="PackedScene" uid="uid://cjikilhv1i254" path="res://scenes/film_grain.tscn" id="2_gqr4i"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_c8606"]
+size = Vector2(50, 50)
+
+[sub_resource type="BoxMesh" id="BoxMesh_sykyp"]
+size = Vector3(5, 5, 5)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_gqr4i"]
+viewport_path = NodePath("SubViewport")
+
+[node name="Node3D" type="Node3D" unique_id=2024669176]
+
+[node name="SubViewport" type="SubViewport" parent="." unique_id=1637949783]
+handle_input_locally = false
+size = Vector2i(1920, 1080)
+render_target_update_mode = 4
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="SubViewport" unique_id=243399477]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0)
+mesh = SubResource("QuadMesh_c8606")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="SubViewport" unique_id=1130806934]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 3.1071615, 0)
+mesh = SubResource("BoxMesh_sykyp")
+
+[node name="Camera3D" type="Camera3D" parent="SubViewport" unique_id=235635793]
+transform = Transform3D(0.8449052, -0.26397076, 0.46524692, 0.04291271, 0.9004021, 0.4329371, -0.53319204, -0.34582576, 0.7720821, 9.757645, 7.673888, 10.339284)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="SubViewport" unique_id=1226651063]
+transform = Transform3D(-0.1509158, -0.5986085, 0.78669703, 2.4986113e-08, 0.79581183, 0.605544, -0.9885466, 0.091386184, -0.12010056, 0, 11.639799, 0)
+shadow_enabled = true
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="." unique_id=1118901704]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer" unique_id=2038724024]
+size = Vector2i(1920, 1080)
+
+[node name="TextureRect" type="TextureRect" parent="SubViewportContainer/SubViewport" unique_id=355052090]
+material = ExtResource("1_sykyp")
+offset_right = 40.0
+offset_bottom = 40.0
+texture = SubResource("ViewportTexture_gqr4i")
+
+[node name="Post_effect" parent="." unique_id=2036027335 instance=ExtResource("2_gqr4i")]
+visible = false

@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://bkh3k73waqkla"]
+
+[ext_resource type="PackedScene" uid="uid://134qblpeohsu" path="res://assets/gardiens/gardien.glb" id="1_tm4re"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hwi6b"]
+cull_mode = 2
+
+[node name="gardien" unique_id=1589885491 instance=ExtResource("1_tm4re")]
+
+[node name="Goethe_Lifemask" parent="." index="0" unique_id=781622808]
+material_override = SubResource("StandardMaterial3D_hwi6b")
