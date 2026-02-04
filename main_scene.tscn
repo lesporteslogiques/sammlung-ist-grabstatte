@@ -14,7 +14,6 @@
 [ext_resource type="AudioStream" uid="uid://ba1h0rfms4jg4" path="res://assets/sons/schiller.wav" id="9_kv3aw"]
 [ext_resource type="AudioStream" uid="uid://bcw584m8kn4mw" path="res://assets/sons/game_over.wav" id="11_fv2he"]
 [ext_resource type="PackedScene" uid="uid://cagis78vabp7b" path="res://scenes/masques.tscn" id="12_5smuj"]
-[ext_resource type="AudioStream" uid="uid://ctc22eurwlbfn" path="res://assets/sons/musique_1.wav" id="12_j8kkg"]
 [ext_resource type="PackedScene" uid="uid://043nuu864otw" path="res://assets/models/skibidi_toilet_template/scene.gltf" id="14_y5ved"]
 [ext_resource type="PackedScene" uid="uid://dbsy7swcjmni8" path="res://scenes/statues.tscn" id="16_y5ved"]
 [ext_resource type="Material" uid="uid://dqdcv6q7pln4g" path="res://shader/materials/bayer_level3_16x16.tres" id="18_7th4q"]
@@ -128,11 +127,6 @@ autoplay = true
 [node name="AudioGameOver" type="AudioStreamPlayer" parent="SubViewportContainer_main/SubViewport_main/audio" unique_id=1781079226]
 stream = ExtResource("11_fv2he")
 volume_db = -10.0
-
-[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="SubViewportContainer_main/SubViewport_main/audio" unique_id=299015756]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27.74395, 0.38051677, -21.281715)
-stream = ExtResource("12_j8kkg")
-volume_db = -30.0
 
 [node name="masques" parent="SubViewportContainer_main/SubViewport_main" unique_id=1219746355 instance=ExtResource("12_5smuj")]
 

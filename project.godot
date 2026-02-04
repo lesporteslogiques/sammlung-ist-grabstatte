@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="Nouveau projet de jeu"
+config/name="Sammlung"
 run/main_scene="uid://h6xo0ity208q"
 config/features=PackedStringArray("4.6", "GL Compatibility")
 config/icon="res://icon.svg"
@@ -28,6 +28,8 @@ alex_debug="*uid://c7wfrkmtxrqsa"
 window/size/viewport_width=1920
 window/size/viewport_height=1080
 window/size/mode=3
+window/size/resizable=false
+window/size/borderless=true
 window/stretch/mode="viewport"
 
 [input]

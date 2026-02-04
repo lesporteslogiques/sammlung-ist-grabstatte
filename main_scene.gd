@@ -49,28 +49,16 @@ func _ready() -> void:
 	$SubViewportContainer_main/SubViewport_main/Hero.started = false
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta: float) -> void:
-	#Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-	pass
-
-
 func _start_game() -> void:
 	$SubViewportContainer_main/SubViewport_main/OpeningScreen/Background.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	$SubViewportContainer_main/SubViewport_main/OpeningScreen.visible = false
 	$SubViewportContainer_main/SubViewport_main/MaskCounter.visible = true
-	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-	
 	$SubViewportContainer_main/SubViewport_main/Hero.reset()
+	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
 
 func _restart_game(_animation_name):
 	get_tree().reload_current_scene()
-	#$SubViewportContainer_main/SubViewport_main/OpeningScreen.visible = true
-	#$SubViewportContainer_main/SubViewport_main/MaskCounter.visible = false
-	#
-	#Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-	#$SubViewportContainer_main/SubViewport_main/OpeningScreen/Background.mouse_filter = Control.MOUSE_FILTER_PASS
 
 
 func _on_hero_caught():

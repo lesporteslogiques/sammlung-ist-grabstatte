@@ -38,7 +38,7 @@ func _process(_delta: float) -> void:
 			state = CHASING
 		IDLE:
 			# Idle speech
-			if not $AudioVoice.is_playing() and randf() < 0.00004:
+			if not $AudioVoice.is_playing() and randf() < 0.00005:
 				$AudioVoice.play()
 
 
