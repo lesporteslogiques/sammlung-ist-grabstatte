@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://deqppfnd8nte6"]
 
 [ext_resource type="Texture2D" uid="uid://bcnyg66oebvkr" path="res://assets/ui/titlescreen.png" id="1_fcatg"]
-[ext_resource type="LabelSettings" uid="uid://brpqbnpckm6nj" path="res://gothic_label_settings.tres" id="2_eesr6"]
+[ext_resource type="LabelSettings" uid="uid://brpqbnpckm6nj" path="res://scenes/gothic_label_settings.tres" id="2_eesr6"]
 
 [sub_resource type="GDScript" id="GDScript_fcatg"]
 script/source = "extends Node2D

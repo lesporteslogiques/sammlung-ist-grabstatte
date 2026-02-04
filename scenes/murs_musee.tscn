@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://dgw8e5r6tdw3s"]
 
 [ext_resource type="PackedScene" uid="uid://bwt54soiya570" path="res://assets/murs_musee.glb" id="1_x8u5g"]
-[ext_resource type="Shader" uid="uid://b1a3jl4rdlusa" path="res://scenes/murs_musee.gdshader" id="2_y5u61"]
+[ext_resource type="Shader" uid="uid://ck8n4nx8gegsm" path="res://scenes/murs_musee.gdshader" id="2_y5u61"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_637dj"]
 render_priority = 0

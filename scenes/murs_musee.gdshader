@@ -2,7 +2,7 @@ shader_type spatial;
 uniform sampler2D texture_x: source_color, repeat_enable;
 
 void vertex() {
-	//VERTEX.x = VERTEX.x + cos(TIME * 1.0 + VERTEX.y) * (VERTEX.y / 10.0) * smoothstep(2.0,20.0,VERTEX.y);
+	VERTEX.x = VERTEX.x + cos(TIME * 1.0 + VERTEX.y) * (VERTEX.y / 10.0) * smoothstep(2.0,20.0,VERTEX.y);
 }
 
 void fragment() {

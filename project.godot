@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Sammlung"
-run/main_scene="uid://h6xo0ity208q"
+run/main_scene="uid://cqxbkrvill0k1"
 config/features=PackedStringArray("4.6", "GL Compatibility")
 config/icon="res://icon.svg"
 

@@ -78,13 +78,13 @@ texture_filter = 0
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." unique_id=141346209]
 stream = ExtResource("3_mwhij")
 volume_db = -25.0
-max_distance = 30.0
+max_db = 0.0
 bus = &"Reverb"
 
 [node name="AudioAmb" type="AudioStreamPlayer3D" parent="." unique_id=540486003]
 volume_db = -25.0
 autoplay = true
-max_distance = 20.0
+max_distance = 25.0
 
 [node name="Area3D" type="Area3D" parent="." unique_id=2135575741]
 

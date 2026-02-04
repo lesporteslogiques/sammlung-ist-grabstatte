@@ -1,6 +1,6 @@
-[gd_scene format=3 uid="uid://h6xo0ity208q"]
+[gd_scene format=3 uid="uid://cqxbkrvill0k1"]
 
-[ext_resource type="Script" uid="uid://gykwd0gl5vir" path="res://main_scene.gd" id="1_2c62f"]
+[ext_resource type="Script" uid="uid://gykwd0gl5vir" path="res://scenes/main_scene.gd" id="1_2c62f"]
 [ext_resource type="PackedScene" uid="uid://duonpkmws3hsq" path="res://scenes/hero.tscn" id="2_2c62f"]
 [ext_resource type="PackedScene" uid="uid://deqppfnd8nte6" path="res://scenes/opening_screen.tscn" id="2_5smuj"]
 [ext_resource type="PackedScene" uid="uid://dgw8e5r6tdw3s" path="res://scenes/murs_musee.tscn" id="4_8mm7a"]
@@ -21,6 +21,7 @@
 [ext_resource type="Texture2D" uid="uid://2xv0rih0wxdl" path="res://assets/tableaux/tableau5.png" id="21_kv3aw"]
 [ext_resource type="Texture2D" uid="uid://bu8mkidkb258e" path="res://assets/tableaux/tableau 8.png" id="21_o7u2a"]
 [ext_resource type="Texture2D" uid="uid://brdhao8kvynri" path="res://assets/tableaux/tableau 9.png" id="22_ijoax"]
+[ext_resource type="Texture2D" uid="uid://te3qlf0sn7hg" path="res://assets/toiletten.png" id="23_02d50"]
 [ext_resource type="Texture2D" uid="uid://bcusr1tyvi405" path="res://assets/tableaux/tableau1.png" id="24_j8kkg"]
 [ext_resource type="PackedScene" uid="uid://bcl107q571qjy" path="res://scenes/mask_counter.tscn" id="24_kv3aw"]
 [ext_resource type="PackedScene" uid="uid://pe58kgpg1fk8" path="res://scenes/game_over_screen.tscn" id="25_y5ved"]
@@ -203,6 +204,13 @@ transparent = false
 shaded = true
 texture_filter = 0
 texture = ExtResource("22_ijoax")
+
+[node name="toiletten" type="Sprite3D" parent="SubViewportContainer_main/SubViewport_main/tableaux" unique_id=1280289068]
+transform = Transform3D(-0.17627554, 0, 0.09448245, 0, 0.19999999, 0, -0.09448245, 0, -0.17627554, 32.50667, 1.6111164, 16.917545)
+transparent = false
+shaded = true
+texture_filter = 0
+texture = ExtResource("23_02d50")
 
 [node name="Film_grain" parent="SubViewportContainer_main/SubViewport_main" unique_id=2036027335 instance=ExtResource("5_8mm7a")]
 

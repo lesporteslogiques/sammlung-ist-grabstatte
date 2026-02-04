@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://bcl107q571qjy"]
 
 [ext_resource type="Texture2D" uid="uid://cjx11wk7vj5go" path="res://assets/ui/masque compteur.png" id="1_6ue82"]
-[ext_resource type="LabelSettings" uid="uid://brpqbnpckm6nj" path="res://gothic_label_settings.tres" id="2_yqkso"]
+[ext_resource type="LabelSettings" uid="uid://brpqbnpckm6nj" path="res://scenes/gothic_label_settings.tres" id="2_yqkso"]
 
 [node name="MaskCounter" type="Node2D" unique_id=1938424269]
 
@@ -10,9 +10,9 @@ position = Vector2(1850, 69)
 texture = ExtResource("1_6ue82")
 
 [node name="Label" type="Label" parent="." unique_id=965295769]
-offset_left = 1726.0
-offset_top = 46.0
-offset_right = 1798.0
-offset_bottom = 110.0
+offset_left = 1725.0
+offset_top = 45.0
+offset_right = 1797.0
+offset_bottom = 109.0
 text = "99"
 label_settings = ExtResource("2_yqkso")
