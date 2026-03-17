@@ -5,7 +5,6 @@ signal mask_captured()
 @export var sprite: Resource
 @export var sound: Resource
 
-
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	$Sprite3D.texture = sprite
@@ -14,14 +13,12 @@ func _ready() -> void:
 	$AudioAmb.stream = sound
 	$AudioAmb.play()
 
-
 func _on_area_3d_body_entered(body: Node3D) -> void:
 	if body is Hero:
 		$Area3D.set_deferred("monitoring", false)
 		$AudioStreamPlayer3D.play()
 		$AnimationPlayer.play("free")
 		emit_signal("mask_captured")
-
 
 func _on_audio_stream_player_3d_finished() -> void:
 	queue_free()

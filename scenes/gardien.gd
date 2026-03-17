@@ -9,12 +9,12 @@ const RAY_LENGTH := 10
 const TURN_SPEED := 2
 
 @onready var rays = [$Rays/Left, $Rays/CenterLeft, $Rays/Center, $Rays/CenterRight, $Rays/Right]
-@onready var center_ray_i := int(len(rays)/2.0)
+@onready var center_ray_i:int = len(rays)/2
 var rays_dist: PackedFloat32Array = []
 var max_dist := 0.0
 var max_dist_i := -1
 
-var player_pos = -1
+var player_pos := -1
 
 enum {IDLE, CHASING, ALARM}
 var state = IDLE

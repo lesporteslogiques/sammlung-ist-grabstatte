@@ -1,33 +1,14 @@
 extends Node3D
 
-@onready var guardians = [
-	$gardiens/Gardien,
-	$gardiens/Gardien2,
-	$gardiens/Gardien3,
-	$gardiens/Gardien4,
-	$gardiens/Gardien5
-]
-@onready var masks = [
-	$masques/Masque1,
-	$masques/Masque2,
-	$masques/Masque3,
-	$masques/Masque4,
-	$masques/Masque5,
-	$masques/Masque6,
-	$masques/Masque7,
-	$masques/Masque8,
-	$masques/Masque9,
-	$masques/Masque10,
-	$masques/Masque11
-]
-
 var captured_n := 0
+var number_of_mask_to_capture := 0
 
 @onready var gameover = $GameOverScreen
 @onready var gamewin = $GameWinScreen
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	# setup
 	$MaskCounter.visible = false
 	
 	# Connecting all signals
@@ -35,15 +16,16 @@ func _ready() -> void:
 	$OpeningScreen.connect("quit_pressed", get_tree().quit)
 	gameover.get_node("AnimationPlayer_fade").connect("animation_finished", _restart_game)
 	gamewin.get_node("AnimationPlayer_fade").connect("animation_finished", _restart_game)
-	
-	for mask in masks:
+
+	for gardien:AnimatableBody3D in $gardiens.get_children():
+		gardien.connect("hero_caught", _on_hero_caught)
+
+	for mask:Node3D in $masques.get_children():
+		number_of_mask_to_capture += 1
 		mask.connect("mask_captured", _on_mask_captured)
 	
-	for guardian in guardians:
-		guardian.connect("hero_caught", _on_hero_caught)
-	
 	# Reset mask counter
-	$MaskCounter/Label.text = str(len(masks))
+	$MaskCounter/Label.text = str(number_of_mask_to_capture)
 	
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	$Hero.started = false
@@ -71,7 +53,7 @@ func _on_hero_caught():
 func _on_mask_captured():
 	print("mask captured")
 	captured_n += 1
-	$MaskCounter/Label.text = str(len(masks) - captured_n)
-	if captured_n >= len(masks):
+	$MaskCounter/Label.text = str(number_of_mask_to_capture - captured_n)
+	if captured_n >= number_of_mask_to_capture:
 		gamewin.visible = true
 		gamewin.get_node("AnimationPlayer_fade").play("FadeinFadeout")
