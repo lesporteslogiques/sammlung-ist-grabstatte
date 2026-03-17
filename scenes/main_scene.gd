@@ -1,38 +1,38 @@
 extends Node3D
 
 @onready var guardians = [
-	$SubViewportContainer_main/SubViewport_main/gardiens/Gardien,
-	$SubViewportContainer_main/SubViewport_main/gardiens/Gardien2,
-	$SubViewportContainer_main/SubViewport_main/gardiens/Gardien3,
-	$SubViewportContainer_main/SubViewport_main/gardiens/Gardien4,
-	$SubViewportContainer_main/SubViewport_main/gardiens/Gardien5
+	$gardiens/Gardien,
+	$gardiens/Gardien2,
+	$gardiens/Gardien3,
+	$gardiens/Gardien4,
+	$gardiens/Gardien5
 ]
 @onready var masks = [
-	$SubViewportContainer_main/SubViewport_main/masques/Masque1,
-	$SubViewportContainer_main/SubViewport_main/masques/Masque2,
-	$SubViewportContainer_main/SubViewport_main/masques/Masque3,
-	$SubViewportContainer_main/SubViewport_main/masques/Masque4,
-	$SubViewportContainer_main/SubViewport_main/masques/Masque5,
-	$SubViewportContainer_main/SubViewport_main/masques/Masque6,
-	$SubViewportContainer_main/SubViewport_main/masques/Masque7,
-	$SubViewportContainer_main/SubViewport_main/masques/Masque8,
-	$SubViewportContainer_main/SubViewport_main/masques/Masque9,
-	$SubViewportContainer_main/SubViewport_main/masques/Masque10,
-	$SubViewportContainer_main/SubViewport_main/masques/Masque11
+	$masques/Masque1,
+	$masques/Masque2,
+	$masques/Masque3,
+	$masques/Masque4,
+	$masques/Masque5,
+	$masques/Masque6,
+	$masques/Masque7,
+	$masques/Masque8,
+	$masques/Masque9,
+	$masques/Masque10,
+	$masques/Masque11
 ]
 
 var captured_n := 0
 
-@onready var gameover = $SubViewportContainer_main/SubViewport_main/GameOverScreen
-@onready var gamewin = $SubViewportContainer_main/SubViewport_main/GameWinScreen
+@onready var gameover = $GameOverScreen
+@onready var gamewin = $GameWinScreen
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	$SubViewportContainer_main/SubViewport_main/MaskCounter.visible = false
+	$MaskCounter.visible = false
 	
 	# Connecting all signals
-	$SubViewportContainer_main/SubViewport_main/OpeningScreen.connect("play_pressed", _start_game)
-	$SubViewportContainer_main/SubViewport_main/OpeningScreen.connect("quit_pressed", get_tree().quit)
+	$OpeningScreen.connect("play_pressed", _start_game)
+	$OpeningScreen.connect("quit_pressed", get_tree().quit)
 	gameover.get_node("AnimationPlayer_fade").connect("animation_finished", _restart_game)
 	gamewin.get_node("AnimationPlayer_fade").connect("animation_finished", _restart_game)
 	
@@ -43,39 +43,35 @@ func _ready() -> void:
 		guardian.connect("hero_caught", _on_hero_caught)
 	
 	# Reset mask counter
-	$SubViewportContainer_main/SubViewport_main/MaskCounter/Label.text = str(len(masks))
+	$MaskCounter/Label.text = str(len(masks))
 	
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-	$SubViewportContainer_main/SubViewport_main/Hero.started = false
-
+	$Hero.started = false
 
 func _start_game() -> void:
-	$SubViewportContainer_main/SubViewport_main/OpeningScreen/Background.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	$SubViewportContainer_main/SubViewport_main/OpeningScreen.visible = false
-	$SubViewportContainer_main/SubViewport_main/MaskCounter.visible = true
-	$SubViewportContainer_main/SubViewport_main/Hero.reset()
+	$OpeningScreen/Background.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	$OpeningScreen.visible = false
+	$MaskCounter.visible = true
+	$Hero.reset()
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-
 
 func _restart_game(_animation_name):
 	get_tree().reload_current_scene()
 
-
 func _on_hero_caught():
-	if not $SubViewportContainer_main/SubViewport_main/audio/AudioGameOver.is_playing():
-		$SubViewportContainer_main/SubViewport_main/audio/AudioGameOver.play()
+	if not $audio/AudioGameOver.is_playing():
+		$audio/AudioGameOver.play()
 	gameover.visible = true
 	gameover.get_node("AnimationPlayer_fade").play("FadeinFadeout")
 	
 	# Disable player collision
-	$SubViewportContainer_main/SubViewport_main/Hero.visible = false
-	$SubViewportContainer_main/SubViewport_main/MaskCounter.visible = false
-
+	$Hero.visible = false
+	$MaskCounter.visible = false
 
 func _on_mask_captured():
 	print("mask captured")
 	captured_n += 1
-	$SubViewportContainer_main/SubViewport_main/MaskCounter/Label.text = str(len(masks) - captured_n)
+	$MaskCounter/Label.text = str(len(masks) - captured_n)
 	if captured_n >= len(masks):
 		gamewin.visible = true
 		gamewin.get_node("AnimationPlayer_fade").play("FadeinFadeout")

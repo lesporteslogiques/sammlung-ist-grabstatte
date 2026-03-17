@@ -19,19 +19,11 @@ config/icon="res://icon.svg"
 
 buses/default_bus_layout="uid://dq2ttyg53au2m"
 
-[autoload]
-
-alex_debug="*uid://c7wfrkmtxrqsa"
-
 [display]
 
 window/size/viewport_width=1920
 window/size/viewport_height=1080
-window/size/mode=3
-window/size/resizable=false
-window/size/borderless=true
-window/stretch/mode="viewport"
-window/stretch/scale_mode="integer"
+window/stretch/mode="canvas_items"
 display_server/driver.linuxbsd="wayland"
 
 [input]

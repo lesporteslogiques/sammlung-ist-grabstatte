@@ -4,12 +4,12 @@ signal hero_caught()
 
 @export var voice: Resource
 
-const SPEED = 2
-const RAY_LENGTH = 10
-const TURN_SPEED = 2
+const SPEED := 2
+const RAY_LENGTH := 10
+const TURN_SPEED := 2
 
 @onready var rays = [$Rays/Left, $Rays/CenterLeft, $Rays/Center, $Rays/CenterRight, $Rays/Right]
-@onready var center_ray_i := int(len(rays)/2)
+@onready var center_ray_i := int(len(rays)/2.0)
 var rays_dist: PackedFloat32Array = []
 var max_dist := 0.0
 var max_dist_i := -1
@@ -19,7 +19,6 @@ var player_pos = -1
 enum {IDLE, CHASING, ALARM}
 var state = IDLE
 
-
 func _ready() -> void:
 	# Set guardian's voice
 	$AudioVoice.stream = voice
@@ -27,7 +26,6 @@ func _ready() -> void:
 	# Fill up ray detection arrays with default values
 	for i in range(len(rays)):
 		rays_dist.append(999)
-
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
@@ -38,9 +36,8 @@ func _process(_delta: float) -> void:
 			state = CHASING
 		IDLE:
 			# Idle speech
-			if not $AudioVoice.is_playing() and randf() < 0.00005:
+			if not $AudioVoice.is_playing() and randf() < 0.0005:
 				$AudioVoice.play()
-
 
 func _physics_process(delta):
 	var walk_speed = delta * -SPEED
@@ -80,7 +77,6 @@ func _physics_process(delta):
 		# Weird 180 turn around
 		rotate_y(PI)
 
-
 func cast_rays() -> void:
 	# Calculate collision distance for each ray
 	max_dist = 0
@@ -109,15 +105,12 @@ func cast_rays() -> void:
 			max_dist = 999
 			max_dist_i = i
 
-
 func get_collision_distance(ray: RayCast3D) -> float:
 	var collision_point = ray.get_collision_point()
 	return (collision_point - global_position).length()
 
-
 func _on_chasing_timer_timeout() -> void:
 	state = IDLE
-
 
 func _on_area_3d_body_entered(body: Node3D) -> void:
 	if body is Hero:
